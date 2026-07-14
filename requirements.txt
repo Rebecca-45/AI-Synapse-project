@@ -1,0 +1,5 @@
+streamlit
+pandas
+scikit-learn
+joblib where should i do this
+
