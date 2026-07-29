@@ -8,7 +8,6 @@ st.write("Enter a student's info to predict whether their GPA is likely to impro
 model = joblib.load('rf_model.pkl')
 model_columns = joblib.load('model_columns.pkl')
 
-# ---- User inputs ----
 weekly_genai_hours = st.slider("Weekly GenAI Hours", 0.0, 40.0, 8.0)
 traditional_study_hours = st.slider("Traditional Study Hours", 0.0, 35.0, 10.0)
 tool_diversity = st.slider("Tool Diversity (number of tools used)", 1, 5, 2)
@@ -23,7 +22,6 @@ use_case = st.selectbox("Primary Use Case", [
 prompt_skill = st.selectbox("Prompt Engineering Skill", ["Beginner", "Intermediate", "Advanced"])
 
 if st.button("Predict"):
-    # Build a single-row dataframe matching training format
     input_dict = {
         'Weekly_GenAI_Hours': weekly_genai_hours,
         'Traditional_Study_Hours': traditional_study_hours,
@@ -38,11 +36,10 @@ if st.button("Predict"):
     input_df = pd.DataFrame([input_dict])
     input_encoded = pd.get_dummies(input_df)
 
-    # Add any missing columns the model expects, filled with 0
     for col in model_columns:
         if col not in input_encoded.columns:
             input_encoded[col] = 0
-    input_encoded = input_encoded[model_columns]  # match column order exactly
+    input_encoded = input_encoded[model_columns]  
 
     prediction = model.predict(input_encoded)[0]
     probability = model.predict_proba(input_encoded)[0][1]
