@@ -7,3 +7,5 @@ Bryan Palenzuela - bpalenzu@nyit.edu
 Rebecca Ann Shiju - fn344343@ucf.edu
 
 Jovial - rana57@purdue.edu
+
+Paransha Tajwani - ptajwani@umass.edu
